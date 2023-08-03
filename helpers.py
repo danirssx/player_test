@@ -34,4 +34,27 @@ def start(self):
     self.driver = webdriver.Chrome(options=options, service=service)
 
 
+# Close the page
+def close(self):
+    # Close selenium WebDriver
+    self.driver.close()
+    self.driver.quit()
+
+# Get the url
+def get(self, url):
+    # Custom function to get the module
+    self.driver.get(url)
+    time.sleep(self.wait_time)
+
+def requests_get(self, url):
+    # To retrieve an error if there's something wrong
+    bool_link = False
+    while not bool_link:
+        response = requests.get(url)
+        time.sleep(5)
+
+        if(response.status_code) == 200:
+            bool_link = True
+        
+    return response
 
