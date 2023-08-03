@@ -55,8 +55,6 @@ class Scrapper:
 #############################################################
 
     def requests_get(self, url):
-        # Start header
-        self.start()
         # To retrieve an error if there's something wrong
         bool_link = False
         while not bool_link:
@@ -68,11 +66,13 @@ class Scrapper:
 
         return response
 
-    def get_match(self, url):
-        # Response
-        response = self.requests_get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
 
-        print(soup)
+# Testing
+head = Scrapper()
+head.start()
+response = head.requests_get(
+    'https://fbref.com/en/matches/abf3df21/South-Africa-Italy-August-2-2023-FIFA-Womens-World-Cup')
 
-        return soup
+soup = BeautifulSoup(response.text, 'html.parser')
+
+print(soup)
