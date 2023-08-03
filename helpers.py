@@ -69,10 +69,20 @@ class Scrapper:
         return response
 
     def get_match(self, url):
-        # Response
+        # Get data url
         response = self.requests_get(url)
+
+        # Parsing data
         soup = BeautifulSoup(response.text, 'html.parser')
+        results_table = soup.find_all('table')
+        df = pd.read_html(str(results_table))
 
-        print(soup)
+        print(df)
 
-        return soup
+        return df
+
+
+head = Scrapper()
+
+head.get_match(
+    'https://fbref.com/en/matches/abf3df21/South-Africa-Italy-August-2-2023-FIFA-Womens-World-Cup')
