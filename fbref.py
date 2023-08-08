@@ -14,6 +14,7 @@ class BotScrap:
                 dataset[i].columns = dataset[i].columns.droplevel(0)
                 dataset[i] = dataset[i].dropna()
                 dataset[i].reset_index(drop=True, inplace=True)
+                dataset[i].rename(columns={'': 'Player ID'})
             except IndexError:
                 print("There's a missed index")
                 return None
@@ -38,38 +39,22 @@ class BotScrap:
         ############################################################
 
         data = {
-            'home': [],
-            'away': [],
-            'shots': []
+            'home': '',
+            'away': '',
+            'shots': ''
         }
 
-        # Fixing Multi-Index
-
+        # Adding values more easy to use
         home_stats = lg_table['Home Player Stats'][0].values[0]
         away_stats = lg_table['Away Player Stats'][0].values[0]
 
-        for i in range(1, min(len(home_stats), len(away_stats))):
+        # Resetting multi-Index
+        self.reset_multi_index(home_stats)
+        self.reset_multi_index(away_stats)
 
-            try:
-                # Eliminating the Multi-Index
-
-                # Home-Stats
-                home_stats[i].columns = home_stats[i].columns.droplevel(0)
-                home_stats[i] = home_stats[i].dropna()
-                home_stats[i].reset_index(drop=True, inplace=True)
-
-                # Away-Stats
-                away_stats[i].columns = away_stats[i].columns.droplevel(0)
-                away_stats[i] = away_stats[i].dropna()
-                away_stats[i].reset_index(drop=True, inplace=True)
-
-                # Dropping index
-                data['home'].append(home_stats[i])
-                data['away'].append(away_stats[i])
-
-            except IndexError:
-                print("There's a missed index")
-                return None
+        # Transferring data to 'data'
+        data['home'] = home_stats
+        data['away'] = away_stats
 
         return data
 
