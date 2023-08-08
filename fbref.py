@@ -14,7 +14,10 @@ class BotScrap:
                 dataset[i].columns = dataset[i].columns.droplevel(0)
                 dataset[i] = dataset[i].dropna()
                 dataset[i].reset_index(drop=True, inplace=True)
-                dataset[i].rename(columns={'': 'Player ID'})
+
+                dataset[i].rename(columns={'': 'Player ID'}, inplace=True)
+
+                print(dataset[i].keys())
             except IndexError:
                 print("There's a missed index")
                 return None
@@ -61,6 +64,6 @@ class BotScrap:
 
 # Try errors
 
-# dataMap = BotScrap()
-# dataMap.get_match(
-#     'https://fbref.com/en/matches/2e4383ca/Arsenal-Leeds-United-April-1-2023-Premier-League')
+dataMap = BotScrap()
+dataMap.get_match(
+    'https://fbref.com/en/matches/2e4383ca/Arsenal-Leeds-United-April-1-2023-Premier-League')
