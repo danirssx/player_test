@@ -89,13 +89,6 @@ class BotScrap:
 
         ############################################################
 
-        data = {
-            'match_data': lg_table,
-            'home': '',
-            'away': '',
-            'shots': ''
-        }
-
         # Adding values more easy to use
         home_stats = lg_table['Home Player Stats'][0].values[0]
         away_stats = lg_table['Away Player Stats'][0].values[0]
@@ -110,12 +103,15 @@ class BotScrap:
         self.reset_multi_index(away_stats, start_index=1)
         self.reset_multi_index(shots_stats, rename=False, drop=False)
 
-        # Transferring data to 'data'
-        data['home'] = home_stats
-        data['away'] = away_stats
-        data['shots'] = shots_stats
+        ############################################
+        # Grouping the data
+        df = pd.Series(dtype=object)
+        df['Match'] = pd.DataFrame(lg_table)
+        df['Home'] = pd.DataFrame(home_stats)
+        df['Away'] = pd.DataFrame(away_stats)
+        df['Shots'] = pd.DataFrame(shots_stats)
 
-        return data
+        return df
 
 
 # Try errors
