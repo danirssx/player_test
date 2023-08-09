@@ -104,12 +104,17 @@ class BotScrap:
         self.reset_multi_index(shots_stats, rename=False, drop=False)
 
         ############################################
+        # Index Names:
+        index_teams = ['Lineups', 'Summary', 'GK', 'Passing',
+                       'Pass Types', 'Defensive Actions', 'Possession', 'Miscellaneous']
+        index_shots = ['Both', 'Home', 'Away']
+
         # Grouping the data
         df = pd.Series(dtype=object)
         df['Match'] = pd.DataFrame(lg_table)
-        df['Home'] = pd.DataFrame(home_stats)
-        df['Away'] = pd.DataFrame(away_stats)
-        df['Shots'] = pd.DataFrame(shots_stats)
+        df['Home'] = pd.DataFrame(home_stats, index=index_teams)
+        df['Away'] = pd.DataFrame(away_stats, index=index_teams)
+        df['Shots'] = pd.DataFrame(shots_stats, index=index_shots)
 
         return df
 
