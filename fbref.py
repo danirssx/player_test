@@ -55,7 +55,31 @@ class BotScrap:
         list_data = [stats_data, barata]
         self.reset_multi_index(list_data, rename=False, drop=False, level=1)
 
-        return stats_data
+        # Invert names
+        team_names = list_data[0].columns
+
+        # Function
+        data = {'home': [], 'away': []}
+        index_names = ['Possession']
+
+        for i in range(0, len(list_data[0]), 2):
+            try:
+                # Home data
+                data['home'].append(list_data[0][team_names[0]][i])
+
+                # away data
+                data['away'].append(list_data[0][team_names[1]][i])
+
+                if i != 0:
+                    index_names.append(list_data[0][team_names[0]][i-1])
+            except IndexError:
+                print("There's a missed index")
+                return None
+
+        # Returning into a DataFrame
+        df = pd.DataFrame(data, index=index_names).T
+
+        return df
 
     ######
     # get Stats Extra:
@@ -74,14 +98,24 @@ class BotScrap:
         if len(stats_data) == 1:
             for div in stats_data[0].find_all(lambda tag: tag.name == 'div' and not tag.attrs):
                 # Structure the data inside
-                print(div)
                 text = div.get_text(strip=True)
                 if text and len(text) < 25:
                     final_data.append(text)
         else:
-            stats_data = None
+            final_data = None
 
-        df = pd.DataFrame(final_data)
+        data = {'home': [], 'away': []}
+        index_names = []
+
+        for i in range(0, len(final_data), 3):
+            # home
+            data['home'].append(int(final_data[i]))
+            # away
+            data['away'].append(int(final_data[i+2]))
+            # index-names
+            index_names.append(final_data[i+1])
+
+        df = pd.DataFrame(data, index=index_names).T
 
         return df
 
