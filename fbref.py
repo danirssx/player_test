@@ -32,16 +32,8 @@ class BotScrap:
     ######
     # get Stats:
 
-    def get_stats(self, url):
-        # Get data from match
-        scraper = sfc.FBRef()
-        response = scraper.requests_get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # scrap stats
-        stats_data = soup.find_all('div', {'id': 'team_stats'})
-
-        print(stats_data)
+    def get_stats(self, stats_data):
+        # # Scrap stats
 
         if len(stats_data) == 1:
             stats_data = pd.read_html(str(stats_data[0]))[0]
@@ -84,15 +76,8 @@ class BotScrap:
     ######
     # get Stats Extra:
 
-    def get_stats_extra(self, url):
-        # Get data from match
-        scraper = sfc.FBRef()
-        response = scraper.requests_get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # scrap stats
-        stats_data = soup.find_all('div', {'id': 'team_stats_extra'})
-
+    def get_stats_extra(self, stats_data):
+        # Scrap extra stats
         final_data = []
 
         if len(stats_data) == 1:
@@ -121,7 +106,7 @@ class BotScrap:
 
     # This get_shots() code belongs to ScraperFC
 
-    def get_shots(self, url, home=None, away=None):
+    def get_general(self, url, home=None, away=None):
         # Get data from match
         scraper = sfc.FBRef()
         response = scraper.requests_get(url)
@@ -159,10 +144,30 @@ class BotScrap:
             else:
                 away_shots = None
 
+        # Shots data
         surted_data = pd.Series(dtype=object)
-
         surted_data['Shots'] = pd.Series(
             {'Both': both_shots, 'Home': home_shots, 'Away': away_shots, }).to_frame().T
+
+        # Stats data
+        stats_data = soup.find_all('div', {'id': 'team_stats'})
+
+        if len(stats_data) == 1:
+            stats_data = self.get_stats(stats_data)
+        else:
+            stats_data = None
+
+        # Extra
+        stats_extra_data = soup.find_all('div', {'id': 'team_stats_extra'})
+
+        if len(stats_extra_data) == 1:
+            stats_extra_data = self.get_stats_extra(stats_extra_data)
+        else:
+            return None
+
+        # Append the Stats
+        surted_data['Stats'] = pd.Series(
+            {'stats': stats_data, 'extra': stats_extra_data})
 
         return surted_data
 
@@ -188,9 +193,9 @@ class BotScrap:
         away_stats = lg_table['Away Player Stats'][0].values[0]
 
         # Shots
-        shots_stats = self.get_shots(
+        general_stats = self.get_general(
             url, lg_table['Home Team ID'][0], lg_table['Away Team ID'][0])
-        shots_stats = shots_stats[0].values[0]
+        shots_stats = general_stats['Shots'].values[0]
 
         # Resetting multi-Index
         self.reset_multi_index(home_stats, start_index=1)
@@ -206,9 +211,13 @@ class BotScrap:
         # Grouping the data
         df = pd.Series(dtype=object)
         df['Match'] = pd.DataFrame(lg_table)
-        df['Home'] = pd.DataFrame(home_stats, index=index_teams)
-        df['Away'] = pd.DataFrame(away_stats, index=index_teams)
-        df['Shots'] = pd.DataFrame(shots_stats, index=index_shots)
+        df['Home'] = pd.DataFrame(
+            home_stats, index=index_teams, columns=['Home'])
+        df['Away'] = pd.DataFrame(
+            away_stats, index=index_teams, columns=['Away'])
+        df['Shots'] = pd.DataFrame(
+            shots_stats, index=index_shots, columns=['Shots'])
+        df['Stats'] = pd.DataFrame(general_stats['Stats'], columns=['Stats'])
 
         return df
 
