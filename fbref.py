@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import ScraperFC as sfc
 from bs4 import BeautifulSoup
-import html5lib
 import traceback
+import re
 
 # class where I will save all the data
 
@@ -28,6 +28,12 @@ class BotScrap:
                 return None
 
         return dataset
+
+    #########
+    # convert the string into integers
+    def extract_integers(self, text):
+        integers = re.findall(r'\d+', str(text))
+        return [int(i) for i in integers]
 
     ######
     # get Stats:
@@ -70,6 +76,9 @@ class BotScrap:
 
         # Returning into a DataFrame
         df = pd.DataFrame(data, index=index_names).T
+
+        # Reconvert the strings
+        df = df.applymap(self.extract_integers)
 
         return df
 
@@ -225,5 +234,5 @@ class BotScrap:
 # Try errors
 
 # dataMap = BotScrap()
-# dataMap.get_stats_extra(
+# dataMap.get_match(
 #     'https://fbref.com/en/matches/2e4383ca/Arsenal-Leeds-United-April-1-2023-Premier-League')
