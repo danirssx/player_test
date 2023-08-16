@@ -11,21 +11,23 @@ import re
 class BotScrap:
 
     # Reset Multi-Index
-    def reset_multi_index(self, dataset, rename=True, start_index=0, drop=True, level=0):
+    def reset_multi_index(self, dataset, rename=True, start_index=0, drop=True, level=0, avoid=[-1]):
 
         for i in range(start_index, len(dataset)):
-            try:
-                dataset[i].columns = dataset[i].columns.droplevel(level)
-                if drop:
-                    dataset[i] = dataset[i].dropna()
-                dataset[i].reset_index(drop=True, inplace=True)
+            if i not in avoid:
+                try:
+                    dataset[i].columns = dataset[i].columns.droplevel(level)
+                    if drop:
+                        dataset[i] = dataset[i].dropna()
+                    dataset[i].reset_index(drop=True, inplace=True)
 
-                # Assign 'Player ID'
-                if rename:
-                    dataset[i].rename(columns={'': 'Player ID'}, inplace=True)
-            except IndexError:
-                print("There's a missed index")
-                return None
+                    # Assign 'Player ID'
+                    if rename:
+                        dataset[i].rename(
+                            columns={'': 'Player ID'}, inplace=True)
+                except IndexError:
+                    print("There's a missed index")
+                    return None
 
         return dataset
 
@@ -207,8 +209,8 @@ class BotScrap:
         shots_stats = general_stats['Shots'].values[0]
 
         # Resetting multi-Index
-        self.reset_multi_index(home_stats, start_index=1)
-        self.reset_multi_index(away_stats, start_index=1)
+        self.reset_multi_index(home_stats, start_index=1, avoid=[3])
+        self.reset_multi_index(away_stats, start_index=1, avoid=[3])
         self.reset_multi_index(shots_stats, rename=False, drop=False)
 
         ############################################
