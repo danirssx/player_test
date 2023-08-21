@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 import ScraperFC as sfc
 from bs4 import BeautifulSoup
 import traceback
@@ -8,7 +9,23 @@ import re
 # class where I will save all the data
 
 
-class BotScrap:
+class FBRef:
+
+    #########
+    # METHODS
+
+    # Filter only the positions that I need
+    def contains_pos(self, cell_value, pos_list):
+        if not pd.notna(cell_value):
+            return False
+
+        return any(pos in cell_value for pos in pos_list)
+
+    # Plot the text in the matplotlib graph
+    def text_plot(self, x, y, labels, color, distance=0.07):
+        for x_val, y_val, name in zip(x, y, labels):
+            plt.text(x_val + distance, y_val, name, fontsize=8,
+                     animated=True, ha='left', color=color, alpha=0.8)
 
     # Reset Multi-Index
     def reset_multi_index(self, dataset, rename=True, start_index=0, drop=True, level=0, avoid=[-1]):
