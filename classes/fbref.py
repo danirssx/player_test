@@ -249,6 +249,13 @@ class FBRef:
 
         return df
 
+    def get_matches(self, data, serie):
+        for team, link in zip(data['teams'], data['links']):
+            match_stats = self.get_match(link)
+            serie[team] = match_stats
+
+        return serie
+
 
 # Try errors
 
