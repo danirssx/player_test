@@ -5,6 +5,7 @@ import ScraperFC as sfc
 from bs4 import BeautifulSoup
 import traceback
 import re
+import os
 
 # class where I will save all the data
 
@@ -13,6 +14,20 @@ class FBRef:
 
     #########
     # METHODS
+
+    # Search the HDF5 File:
+    def get_hdf5(self, file, route):
+        # Get access to the file with the data:
+        current_directory = os.getcwd()
+        hdf5_file_path = os.path.join(
+            current_directory, f'../matches_data/{file}')
+
+        # Store the result to possibly work with that:
+        store = pd.HDFStore(hdf5_file_path)
+        league = store[route]
+        store.close()
+
+        return league
 
     # Filter only the positions that I need
     def contains_pos(self, cell_value, pos_list):
@@ -26,6 +41,30 @@ class FBRef:
         for x_val, y_val, name in zip(x, y, labels):
             plt.text(x_val + distance, y_val, name, fontsize=8,
                      animated=True, ha='left', color=color, alpha=0.8)
+
+    # Structure teams with the principal passes columns
+
+    def structure_passing(self, rows, positions, team):
+        # Home passes
+        passes = team['Passing']
+        passes = passes.loc[:, rows]
+        # Minutes:
+        passes = passes[passes[('Unnamed: 5_level_0', 'Min')] >= 45]
+
+        # Home
+        passes_pos = passes['Unnamed: 3_level_0'].applymap(
+            lambda cell_value: self.contains_pos(cell_value, positions))
+
+        # Return it:
+        passes = passes[passes_pos['Pos']]
+
+        return passes
+
+    # Plot the Data
+
+    def scatter_match(self, x, y, players, color):
+        plt.scatter(x, y, color=color)
+        self.text_plot(x, y, players, color)
 
     # Reset Multi-Index
     def reset_multi_index(self, dataset, rename=True, start_index=0, drop=True, level=0, avoid=[-1]):
