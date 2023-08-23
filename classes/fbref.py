@@ -36,12 +36,6 @@ class FBRef:
 
         return any(pos in cell_value for pos in pos_list)
 
-    # Plot the text in the matplotlib graph
-    def text_plot(self, x, y, labels, color, distance=0.07):
-        for x_val, y_val, name in zip(x, y, labels):
-            plt.text(x_val + distance, y_val, name, fontsize=8,
-                     animated=True, ha='left', color=color, alpha=0.8)
-
     # Structure teams with the principal passes columns
 
     def structure_passing(self, rows, positions, team):
@@ -60,11 +54,62 @@ class FBRef:
 
         return passes
 
-    # Plot the Data
+    # Structure teams with xG/xA
 
-    def scatter_match(self, x, y, players, color):
-        plt.scatter(x, y, color=color)
-        self.text_plot(x, y, players, color)
+    def attack_structure(self, rows, positions, team):
+        # Structure:
+        team_danger = team['Summary'][rows]
+        # Add the xA row:
+        team_danger.loc[:, 'xA'] = team['Passing'][(
+            'Unnamed: 22_level_0', 'xA')].copy()
+        # Filter players with > 45 MIN
+        team_danger = team_danger[(team_danger['Min'] >= 45) & (
+            team_danger['xG'] > 0) & (team_danger['xA'] > 0)]
+
+        # Filter positions of the players
+        home_pos_attack = team_danger[['Pos']].applymap(
+            lambda cell_value: self.contains_pos(cell_value, positions))
+
+        team_danger = team_danger[home_pos_attack['Pos']]
+
+        return team_danger
+
+    # Organizing all in one DataFrame
+
+    def league_panda(self, dataframes, teams, colors):
+        # Principal list:
+        big_data = []
+
+        # Loop:
+        for i, df in enumerate(dataframes):
+            try:
+                df['team'] = teams[i]
+                df['ColorCode'] = colors[i]
+                big_data.append(df)
+            except IndexError:
+                print("Some team don't have enough players.")
+                return None
+
+        # premier
+        league = pd.concat(big_data, ignore_index=True)
+
+        return league
+
+    # PLOTTING
+
+    # Plot the text in the matplotlib graph
+    def text_plot(self, x, y, labels, color, distance, size):
+        for x_val, y_val, name, color in zip(x, y, labels, color):
+            plt.text(x_val + distance, y_val, name, fontsize=size,
+                     animated=True, ha='left', color=color, alpha=0.8)
+
+    # Plot the Data
+    def scatter_match(self, x, y, players, color, distance=0.07, size=8):
+        plt.scatter(x, y, c=color, alpha=0.7)
+        self.text_plot(x, y, players, color, distance, size)
+
+    ##############
+    # SCRAPPING
 
     # Reset Multi-Index
     def reset_multi_index(self, dataset, rename=True, start_index=0, drop=True, level=0, avoid=[-1]):
