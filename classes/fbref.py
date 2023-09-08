@@ -343,6 +343,6 @@ class FBRef:
 
 # Try errors
 
-# dataMap = BotScrap()
-# dataMap.get_match(
-#     'https://fbref.com/en/matches/2e4383ca/Arsenal-Leeds-United-April-1-2023-Premier-League')
+dataMap = FBRef()
+dataMap.get_match(
+    'https://fbref.com/en/matches/2e4383ca/Arsenal-Leeds-United-April-1-2023-Premier-League')
