@@ -151,6 +151,41 @@ class sofaScore:
 
         return players
 
+    ######
+    # GETTING GRAPH
+
+    def get_graph(self, json):
+        graph = pd.DataFrame(json)
+
+        # data to iterate:
+        data = {
+            'min': [],
+            'value': [],
+            'periodTime': [],
+            'periodCount': [],
+        }
+
+        # Iterate data:
+
+        for i in range(len(graph)-1):
+            all_data = graph.iloc[i, :]
+            grab_point = pd.DataFrame([graph['graphPoints'][i]])
+            # APPEND DATA:
+            # Minute
+            data['min'].append(grab_point['minute'])
+            # Value
+            data['value'].append(grab_point['value'])
+            # period Time
+            data['periodTime'].append(all_data['periodTime'])
+            # Period Count
+            data['periodCount'].append(all_data['periodCount'])
+
+        # Recopile into a Pandas
+
+        df = pd.DataFrame(data)
+
+        return df
+
     ########
     # EXECUTION FUNCTIONS
 
@@ -198,9 +233,21 @@ class sofaScore:
         else:
             None
 
+        # Graph
+        response_graph = requests.get(
+            f'https://api.sofascore.com/api/v1/event/{code_match}/graph', headers=headers)
+
+        if response_graph.status_code == 200:
+            graph = response_graph.json()
+            df_graph = self.get_graph(graph)
+        else:
+            None
+
+        # Transpile into a Series:
         df = pd.Series(dtype=object)
         df['Shotmap'] = df_shots
         df['Best_Players'] = df_players
+        df['Graph'] = df_graph
 
         return df
 
