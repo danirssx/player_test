@@ -172,9 +172,9 @@ class sofaScore:
             grab_point = pd.DataFrame([graph['graphPoints'][i]])
             # APPEND DATA:
             # Minute
-            data['min'].append(grab_point['minute'])
+            data['min'].append(grab_point['minute'][0])
             # Value
-            data['value'].append(grab_point['value'])
+            data['value'].append(grab_point['value'][0])
             # period Time
             data['periodTime'].append(all_data['periodTime'])
             # Period Count
