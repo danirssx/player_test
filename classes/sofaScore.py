@@ -38,6 +38,21 @@ class sofaScore:
 
         return last_number
 
+    # Clean Coords:
+    def clean_coords(self, extra, name):
+        dataframes = [item for item in extra[name]
+                      if isinstance(item, pd.DataFrame)]
+
+        if not dataframes:
+            return extra
+
+        res = pd.concat(dataframes, ignore_index=True)
+        res.columns = [f'x_{name}', f'y_{name}']
+        df = extra.drop(name, axis=1)
+        df = df.join(res)
+
+        return df
+
         ########
         # CLEANING DATA
 
@@ -116,6 +131,18 @@ class sofaScore:
 
         # Cleaning into a Panda Dataframe:
         df_shots = pd.DataFrame(data).iloc[::-1].reset_index(drop=True)
+
+        # Clean Coords:
+        # START
+        # res_start = pd.concat(df_shots['start'].tolist(), ignore_index=True)
+        # res_start.columns = ['x_start', 'y_start']
+        # df_shots = df_shots.drop('start', axis=1)
+        # df_shots = df_shots.join(res_start)
+
+        df_shots = self.clean_coords(df_shots, 'start')
+        df_shots = self.clean_coords(df_shots, 'block')
+        df_shots = self.clean_coords(df_shots, 'end')
+        df_shots = self.clean_coords(df_shots, 'goal')
 
         return df_shots
 
