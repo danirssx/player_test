@@ -61,6 +61,34 @@ class sofaScore:
         ########
         # CLEANING DATA
 
+        # Cleaning event info:
+
+    def get_event(self, json):
+        event = pd.DataFrame(json)
+
+        # Cleaning event
+        data = {
+            'homeTeam': [],
+            'homeScore': [],
+            'awayTeam': [],
+            'awayScore': [],
+            'tournament': [],
+            'venue': [],
+        }
+
+        # Iterate data:
+
+        data['homeTeam'].append(pd.DataFrame([event['event']['homeTeam']]))
+        data['homeScore'].append(pd.DataFrame([event['event']['homeScore']]))
+        data['awayTeam'].append(pd.DataFrame([event['event']['awayTeam']]))
+        data['awayScore'].append(pd.DataFrame([event['event']['awayScore']]))
+        data['tournament'].append(pd.DataFrame([event['event']['tournament']]))
+        data['venue'].append(pd.DataFrame([event['event']['venue']]))
+
+        df = pd.DataFrame(data)
+
+        return df
+
         # Cleaning Shots
 
     def get_shotmap(self, json):
@@ -245,6 +273,16 @@ class sofaScore:
         # Set timezone to the correct one:
         headers['If-Modified-Since'] = self.current_timezone()
 
+        # Event info
+        response_event = requests.get(
+            f'https://api.sofascore.com/api/v1/event/{code_match}', headers=headers)
+
+        if response_event.status_code == 200:
+            event = response_event.json()
+            df_event = self.get_event(event)
+        else:
+            None
+
         # Shotmap
         response_shots = requests.get(
             f'https://api.sofascore.com/api/v1/event/{code_match}/shotmap', headers=headers)
@@ -277,6 +315,7 @@ class sofaScore:
 
         # Transpile into a Series:
         df = pd.Series(dtype=object)
+        df['Event'] = df_event
         df['Shotmap'] = df_shots
         df['Best_Players'] = df_players
         df['Graph'] = df_graph
