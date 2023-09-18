@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from bs4 import BeautifulSoup
 import requests
 import pytz
@@ -39,7 +40,7 @@ class sofaScore:
         return last_number
 
     # Clean Coords:
-    def clean_coords(self, extra, name):
+    def clean_coords(self, extra, name, rotate=True):
         dataframes = [item for item in extra[name]
                       if isinstance(item, pd.DataFrame)]
 
@@ -47,6 +48,10 @@ class sofaScore:
             return extra
 
         res = pd.concat(dataframes, ignore_index=True)
+
+        if (rotate):
+            res = pd.DataFrame(abs(res[['x', 'y']]-100))
+
         res.columns = [f'x_{name}', f'y_{name}']
         df = extra.drop(name, axis=1)
         df = df.join(res)
