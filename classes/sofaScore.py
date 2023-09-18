@@ -5,6 +5,7 @@ import requests
 import pytz
 from datetime import datetime
 import re
+import os
 
 
 class sofaScore:
@@ -113,7 +114,7 @@ class sofaScore:
 
         # Transform all data:
         # OVERALL
-        for i in range(len(shots)-1):
+        for i in range(len(shots)):
             # Systematic data:
             # NAMES
             player_one = pd.DataFrame(shots['shotmap'][i])
@@ -227,7 +228,7 @@ class sofaScore:
 
         # Iterate data:
 
-        for i in range(len(graph)-1):
+        for i in range(len(graph)):
             all_data = graph.iloc[i, :]
             grab_point = pd.DataFrame([graph['graphPoints'][i]])
             # APPEND DATA:
@@ -246,10 +247,27 @@ class sofaScore:
 
         return df
 
+    ######
+    # GETTING IMAGE
+
+    def get_logo(self, team, logo):
+        file_path = f"../logos/{team}.png"
+
+        if not os.path.exists(file_path):
+            # Open a file and write the image data to it
+            with open(file_path, "wb") as image_file:
+                image_file.write(logo)
+
+            print('Logos Saved Succesfully')
+        else:
+            print("There's a logo repeated, please check")
+
+        return file_path
+
     ########
     # EXECUTION FUNCTIONS
 
-    def get_match(self, link):
+    def get_match(self, link, graph=True, logo=True):
         code_match = self.get_code(link)
 
         # set the header:
@@ -304,21 +322,52 @@ class sofaScore:
             None
 
         # Graph
-        response_graph = requests.get(
-            f'https://api.sofascore.com/api/v1/event/{code_match}/graph', headers=headers)
+        if (graph):
+            response_graph = requests.get(
+                f'https://api.sofascore.com/api/v1/event/{code_match}/graph', headers=headers)
 
-        if response_graph.status_code == 200:
-            graph = response_graph.json()
-            df_graph = self.get_graph(graph)
-        else:
-            None
+            if response_graph.status_code == 200:
+                graph = response_graph.json()
+                df_graph = self.get_graph(graph)
+            else:
+                None
+
+        # Image URL:
+        if (logo):
+            # id Numbers
+            home_id = df_event['homeTeam'][0]['id'][0]
+            away_id = df_event['awayTeam'][0]['id'][0]
+
+            # Getting request:
+            response_img_home = requests.get(
+                f'https://api.sofascore.app/api/v1/team/{home_id}/image', headers=headers)
+            response_img_away = requests.get(
+                f'https://api.sofascore.app/api/v1/team/{away_id}/image', headers=headers)
+
+            if response_img_home.status_code == 200 and response_img_away.status_code == 200:
+                img_home = response_img_home.content
+                img_away = response_img_away.content
+
+                # Save logo:
+
+                home_logo = self.get_logo(
+                    df_event['homeTeam'][0]['slug'][0], img_home)
+                away_logo = self.get_logo(
+                    df_event['awayTeam'][0]['slug'][0], img_away)
+            else:
+                None
 
         # Transpile into a Series:
         df = pd.Series(dtype=object)
         df['Event'] = df_event
         df['Shotmap'] = df_shots
         df['Best_Players'] = df_players
-        df['Graph'] = df_graph
+
+        if (graph):
+            df['Graph'] = df_graph
+
+        if (logo):
+            df['Logos'] = [home_logo, away_logo]
 
         return df
 
