@@ -1,0 +1,41 @@
+player,shortName,shotType,isHome,bodyPart,xG,minute,addedTime,position,x_start,y_start,x_block,y_block,x_end,y_end,x_goal,y_goal
+Matheus Nunes,M. Nunes,miss,True,head,0.08428768068552,3,,M,54.0,90.7,48.0,82.7,54.8,100,54.8,75.0
+Phil Foden,P. Foden,block,True,left-foot,0.045458607375622,9,,F,47.3,76.8,48.9,98.9,50.1,100,50.1,19.0
+Phil Foden,P. Foden,miss,True,left-foot,0.31834107637405,10,,F,54.5,91.2,50.4,98.8,58.8,100,58.8,20.799999999999997
+Rodri,Rodri,save,True,right-foot,0.14259198307991,15,,M,46.1,85.9,37.0,84.5,50.5,100,50.5,24.700000000000003
+Julián Álvarez,J. Álvarez,save,True,left-foot,0.072847343981266,17,,F,52.7,82.2,34.8,82.3,51.1,100,51.1,22.799999999999997
+Erling Haaland,E. Haaland,miss,True,head,0.054287698119879,20,,F,61.4,92.3,51.8,98.9,42.5,100,42.5,20.799999999999997
+Erling Haaland,E. Haaland,post,True,head,0.30558711290359,25,,F,47.2,96.6,47.7,99.1,50.1,100,50.1,39.9
+Rodri,Rodri,block,True,right-foot,0.052578818053007,27,,M,33.5,79.8,47.1,98.8,48.6,100,48.6,19.0
+Kyle Walker,K. Walker,block,True,right-foot,0.015381149016321,29,,D,32.2,79.1,52.9,89.0,49.6,100,49.6,19.0
+Nathan Aké,N. Aké,save,True,head,0.042830843478441,29,,D,55.5,88.9,33.400000000000006,85.3,46.4,100,46.4,4.400000000000006
+Matheus Nunes,M. Nunes,save,True,head,0.055925808846951,30,,M,45.1,90.1,62.5,90.7,52.3,100,52.3,10.799999999999997
+Bernardo Silva,B. Silva,save,True,left-foot,0.038350664079189,33,,M,30.799999999999997,86.4,49.1,98.1,46.5,100,46.5,2.5
+Julián Álvarez,J. Álvarez,block,True,right-foot,0.059814531356096,34,,F,54.9,80.6,41.3,88.6,50.3,100,50.3,19.0
+Erling Haaland,E. Haaland,miss,True,left-foot,0.33586299419403,34,,F,54.5,90.4,37.4,92.7,49.4,100,49.4,77.8
+Bernardo Silva,B. Silva,block,True,left-foot,0.021858377382159,36,,M,32.2,84.3,48.2,99.0,49.8,100,49.8,19.0
+Sergio Gómez,S. Gómez,block,True,left-foot,0.044509381055832,36,,M,64.5,88.9,48.7,89.5,52.0,100,52.0,19.0
+Julián Álvarez,J. Álvarez,save,True,right-foot,0.054696228355169,38,,F,37.9,78.7,48.7,98.0,53.3,100,53.3,13.299999999999997
+Rodri,Rodri,block,True,right-foot,0.028004737570882,39,,M,39.5,86.2,53.6,97.3,49.9,100,49.9,19.0
+Bernardo Silva,B. Silva,block,True,left-foot,0.065439850091934,41,,M,33.7,90.5,48.9,96.9,49.8,100,49.8,19.0
+Phil Foden,P. Foden,save,True,head,0.34540408849716,41,,F,46.0,92.7,52.5,99.8,48.1,100,48.1,3.200000000000003
+Phil Foden,P. Foden,block,True,right-foot,0.14567977190018,42,,F,49.0,86.2,53.8,99.1,47.9,100,47.9,19.0
+Julián Álvarez,J. Álvarez,miss,True,right-foot,0.044381070882082,45,,F,31.099999999999994,91.8,61.7,90.7,39.7,100,39.7,27.799999999999997
+Osman Bukari,O. Bukari,goal,False,right-foot,0.49640107154846,45,,M,46.4,84.0,48.4,98.5,49.1,100,49.1,15.200000000000003
+Julián Álvarez,J. Álvarez,goal,True,right-foot,0.5945965051651,47,,F,38.7,97.3,51.3,98.1,46.8,100,46.8,0.5999999999999943
+Julián Álvarez,J. Álvarez,save,True,right-foot,0.0240783020854,57,,F,39.2,75.1,,,51.2,100,51.2,10.799999999999997
+Erling Haaland,E. Haaland,save,True,right-foot,0.44445249438286,57,,F,54.3,95.6,,,51.6,100,51.6,6.299999999999997
+Julián Álvarez,J. Álvarez,goal,True,right-foot,0.040147483348846,60,,F,82.4,81.3,,,46.6,100,46.6,25.299999999999997
+In-Beom Hwang,I. Hwang,save,False,right-foot,0.13299067318439,62,,M,44.9,84.6,,,48.5,100,48.5,10.099999999999994
+Rodri,Rodri,miss,True,right-foot,0.01933660171926,63,,M,47.2,73.0,,,42.0,100,42.0,38.9
+Erling Haaland,E. Haaland,save,True,head,0.16694001853466,64,,F,59.1,97.2,,,53.3,100,53.3,14.599999999999994
+Julián Álvarez,J. Álvarez,miss,True,left-foot,0.12541949748993,65,,F,58.8,96.5,,,57.1,100,57.1,23.599999999999994
+Mirko Ivanić,M. Ivanić,miss,False,right-foot,0.047537084668875,67,,M,59.6,77.0,,,38.5,100,38.5,15.299999999999997
+Jérémy Doku,J. Doku,save,True,left-foot,0.037842523306608,69,,F,66.8,93.3,,,50.6,100,50.6,5.099999999999994
+Rúben Dias,R. Dias,miss,True,head,0.064306795597076,70,,D,54.6,91.9,,,63.5,100,63.5,63.9
+Rodri,Rodri,goal,True,right-foot,0.060331918299198,73,,M,62.9,84.7,,,45.8,100,45.8,5.099999999999994
+Phil Foden,P. Foden,miss,True,left-foot,0.033077459782362,75,,F,29.200000000000003,87.1,,,54.6,100,54.6,58.3
+Erling Haaland,E. Haaland,miss,True,head,0.10162461549044,77,,F,55.3,93.3,,,54.1,100,54.1,77.8
+Jérémy Doku,J. Doku,block,True,right-foot,0.039327763020992,79,,F,67.5,85.4,,,51.6,100,51.6,19.0
+Oscar Bobb,O. Bobb,save,True,left-foot,0.028322078287601,85,,M,31.900000000000006,84.9,,,47.5,100,47.5,24.099999999999994
+Nathan Aké,N. Aké,save,True,head,0.023510821163654,86,,D,55.7,85.6,,,47.7,100,47.7,16.5

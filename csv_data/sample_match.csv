@@ -1,113 +1,151 @@
 0
-"                player           shortName shotType  isHome    bodyPart    xG  \
-0          Samuel Sosa             S. Sosa     save    True   left-foot  <NA>   
-1       Miguel Almirón          M. Almirón     miss   False   left-foot  <NA>   
-2       Miguel Almirón          M. Almirón    block   False   left-foot  <NA>   
-3       Salomón Rondón           S. Rondón    block    True  right-foot  <NA>   
-4   Alexander González         A. González    block    True  right-foot  <NA>   
-5       Miguel Navarro          M. Navarro     miss    True   left-foot  <NA>   
-6      Fabián Balbuena     Fabián Balbuena     save   False        head  <NA>   
-7       Yangel Herrera          Y. Herrera     save    True        head  <NA>   
-8          Samuel Sosa             S. Sosa     miss    True   left-foot  <NA>   
-9       Miguel Almirón          M. Almirón     miss   False   left-foot  <NA>   
-10     Richard Sánchez          R. Sánchez     save   False  right-foot  <NA>   
-11        Robert Rojas            R. Rojas     miss   False        head  <NA>   
-12          Ramón Sosa             R. Sosa    block   False  right-foot  <NA>   
-13         Samuel Sosa             S. Sosa     miss    True   left-foot  <NA>   
-14        Robert Rojas            R. Rojas     miss   False   left-foot  <NA>   
-15       Yordan Osorio           Y. Osorio     miss    True        head  <NA>   
-16          Ramón Sosa             R. Sosa     miss   False  right-foot  <NA>   
-17      Miguel Almirón          M. Almirón     miss   False   left-foot  <NA>   
-18      Sergio Córdova          S. Córdova     miss    True  right-foot  <NA>   
-19          Ramón Sosa             R. Sosa    block   False  right-foot  <NA>   
-20          Ramón Sosa             R. Sosa     miss   False        head  <NA>   
-21  Mathias Villasanti  Mathias Villasanti    block   False   left-foot  <NA>   
-22  Mathias Villasanti  Mathias Villasanti    block   False   left-foot  <NA>   
-23      Miguel Almirón          M. Almirón     miss   False   left-foot  <NA>   
-24     Richard Sánchez          R. Sánchez     save   False  right-foot  <NA>   
-25                Kaku                Kaku     save   False   left-foot  <NA>   
-26     Carlos Gonzalez         C. Gonzalez     save   False        head  <NA>   
-27      Salomón Rondón           S. Rondón     goal    True  right-foot  <NA>   
+"                                            homeTeam  \
+0                name             slug shortName ...   
 
-    minute addedTime position  x_start  y_start  x_block  y_block  x_end  \
-0        4      <NA>        M     73.2     25.5     53.1      1.9   49.9   
-1        9      <NA>        F     60.2      1.4     48.4     20.5   56.6   
-2       12      <NA>        F     48.4     22.6     55.8      5.9   48.1   
-3       18      <NA>        F     56.5      6.7     66.1      7.5   50.3   
-4       18      <NA>        D     68.4      8.7     43.5     11.5   51.8   
-5       23      <NA>        D     35.9     17.9     48.2      1.2   61.7   
-6       28      <NA>        D     45.2      7.0     49.8      1.2   49.9   
-7       37      <NA>        M     53.0      9.0     43.3      5.7   49.1   
-8       37      <NA>        M     31.3     23.5     52.5      1.2   41.7   
-9       45         2        F     35.7     12.7     39.0     16.3   49.2   
-10      47      <NA>        M     55.9     12.8     33.4     19.9   49.4   
-11      50      <NA>        D     63.0      7.8     41.2     14.1   60.0   
-12      52      <NA>        M     34.9     23.2     41.3     10.6   48.6   
-13      53      <NA>        M     36.1     52.9     46.0      1.0   90.3   
-14      55      <NA>        D     52.7     18.2     52.3      1.0   59.7   
-15      59      <NA>        D     48.5     12.8     51.1      0.9   40.5   
-16      60      <NA>        M     45.7     18.2      NaN      NaN   42.2   
-17      63      <NA>        F     47.4     14.1      NaN      NaN   37.1   
-18      67      <NA>        F     64.7      9.6      NaN      NaN   56.1   
-19      68      <NA>        M     30.0     24.2      NaN      NaN   49.2   
-20      69      <NA>        M     36.7      4.1      NaN      NaN   37.5   
-21      69      <NA>        M     40.2     15.5      NaN      NaN   50.7   
-22      69      <NA>        M     40.4     12.0      NaN      NaN   48.4   
-23      69      <NA>        F     49.9     18.4      NaN      NaN   44.5   
-24      76      <NA>        M     30.9     20.3      NaN      NaN   53.9   
-25      86      <NA>        M     55.5     15.3      NaN      NaN   51.9   
-26      87      <NA>        F     48.2     10.7      NaN      NaN   50.0   
-27      90         3        F     50.0     11.5      NaN      NaN   47.4   
+                                 homeScore  \
+0     current  display
+0        0        0   
 
-    y_end  x_goal  y_goal  
-0       0    49.9    95.6  
-1       0    56.6    97.2  
-2       0    48.1    81.0  
-3       0    50.3    81.0  
-4       0    51.8    81.0  
-5       0    61.7    98.6  
-6       0    49.9    84.2  
-7       0    49.1    74.7  
-8       0    41.7    98.6  
-9       0    49.2    33.3  
-10      0    49.4    75.9  
-11      0    60.0    37.5  
-12      0    48.6    81.0  
-13      0    90.3    94.4  
-14      0    59.7    97.2  
-15      0    40.5    80.6  
-16      0    42.2    95.8  
-17      0    37.1    97.2  
-18      0    56.1    72.2  
-19      0    49.2    81.0  
-20      0    37.5    65.3  
-21      0    50.7    81.0  
-22      0    48.4    81.0  
-23      0    44.5    37.5  
-24      0    53.9    93.7  
-25      0    51.9    95.6  
-26      0    50.0    91.1  
-27      0    47.4    93.0  "
+                                            awayTeam  \
+0                 name              slug      sho...   
+
+                                 awayScore  \
+0     current  display
+0        1        1   
+
+                                          tournament  \
+0                               name             ...   
+
+                                               venue  
+0                       city                     ...  "
+"            player   shortName shotType  isHome    bodyPart        xG  minute  \
+0    Matheus Nunes    M. Nunes     miss    True        head  0.084288       3   
+1       Phil Foden    P. Foden    block    True   left-foot  0.045459       9   
+2       Phil Foden    P. Foden     miss    True   left-foot  0.318341      10   
+3            Rodri       Rodri     save    True  right-foot  0.142592      15   
+4   Julián Álvarez  J. Álvarez     save    True   left-foot  0.072847      17   
+5   Erling Haaland  E. Haaland     miss    True        head  0.054288      20   
+6   Erling Haaland  E. Haaland     post    True        head  0.305587      25   
+7            Rodri       Rodri    block    True  right-foot  0.052579      27   
+8      Kyle Walker   K. Walker    block    True  right-foot  0.015381      29   
+9       Nathan Aké      N. Aké     save    True        head  0.042831      29   
+10   Matheus Nunes    M. Nunes     save    True        head  0.055926      30   
+11  Bernardo Silva    B. Silva     save    True   left-foot  0.038351      33   
+12  Julián Álvarez  J. Álvarez    block    True  right-foot  0.059815      34   
+13  Erling Haaland  E. Haaland     miss    True   left-foot  0.335863      34   
+14  Bernardo Silva    B. Silva    block    True   left-foot  0.021858      36   
+15    Sergio Gómez    S. Gómez    block    True   left-foot  0.044509      36   
+16  Julián Álvarez  J. Álvarez     save    True  right-foot  0.054696      38   
+17           Rodri       Rodri    block    True  right-foot  0.028005      39   
+18  Bernardo Silva    B. Silva    block    True   left-foot  0.065440      41   
+19      Phil Foden    P. Foden     save    True        head  0.314808      41   
+20      Phil Foden    P. Foden    block    True  right-foot  0.145680      42   
+21  Julián Álvarez  J. Álvarez     miss    True  right-foot  0.044381      45   
+22    Osman Bukari   O. Bukari     goal   False  right-foot  0.420300      45   
+
+   addedTime position  x_start  y_start  x_block  y_block  x_end  y_end  \
+0       <NA>        M     54.0     90.7     48.0     82.7   54.8    100   
+1       <NA>        F     47.3     76.8     48.9     98.9   50.1    100   
+2       <NA>        F     54.5     91.2     50.4     98.8   58.8    100   
+3       <NA>        M     46.1     85.9     37.0     84.5   50.5    100   
+4       <NA>        F     52.7     82.2     34.8     82.3   51.1    100   
+5       <NA>        F     61.4     92.3     51.8     98.9   42.5    100   
+6       <NA>        F     47.2     96.6     47.7     99.1   50.1    100   
+7       <NA>        M     33.5     79.8     47.1     98.8   48.6    100   
+8       <NA>        D     32.2     79.1     52.9     89.0   49.6    100   
+9       <NA>        D     55.5     88.9     33.4     85.3   46.4    100   
+10      <NA>        M     45.1     90.1     62.5     90.7   52.3    100   
+11      <NA>        M     30.8     86.4     49.1     98.1   46.5    100   
+12      <NA>        F     54.9     80.6     41.3     88.6   50.3    100   
+13      <NA>        F     54.5     90.4     37.4     92.7   49.4    100   
+14      <NA>        M     32.2     84.3     48.2     99.0   49.8    100   
+15      <NA>        M     64.5     88.9     48.7     89.5   52.0    100   
+16      <NA>        F     37.9     78.7      NaN      NaN   53.3    100   
+17      <NA>        M     39.5     86.2      NaN      NaN   49.9    100   
+18      <NA>        M     33.7     90.5      NaN      NaN   49.8    100   
+19      <NA>        F     46.0     92.7      NaN      NaN   48.1    100   
+20      <NA>        F     49.0     86.2      NaN      NaN   47.9    100   
+21      <NA>        F     31.1     91.8      NaN      NaN   39.7    100   
+22      <NA>        M     46.4     84.0      NaN      NaN   49.1    100   
+
+    x_goal  y_goal  
+0     54.8    75.0  
+1     50.1    19.0  
+2     58.8    20.8  
+3     50.5    24.7  
+4     51.1    22.8  
+5     42.5    20.8  
+6     50.1    39.9  
+7     48.6    19.0  
+8     49.6    19.0  
+9     46.4     4.4  
+10    52.3    10.8  
+11    46.5     2.5  
+12    50.3    19.0  
+13    49.4    77.8  
+14    49.8    19.0  
+15    52.0    19.0  
+16    53.3    13.3  
+17    49.9    19.0  
+18    49.8    19.0  
+19    48.1     3.2  
+20    47.9    19.0  
+21    39.7    27.8  
+22    49.1    15.2  "
 "                                       bestHomeTeamPlayer  \
-value                                                 8.0   
+value                                                 7.9   
 label                                              rating   
-player            name         slug shortName position...   
+player              name firstName lastName           ...   
 
                                        bestAwayTeamPlayer  
-value                                                 7.5  
+value                                                 8.6  
 label                                              rating  
-player                   name                slug     ...  "
+player            name         slug  shortName positio...  "
 "     min  value  periodTime  periodCount
-0    1.0      3          45            2
-1    2.0    -22          45            2
-2    3.0     18          45            2
-3    4.0     25          45            2
-4    5.0     52          45            2
-..   ...    ...         ...          ...
-86  86.0    -25          45            2
-87  87.0    -78          45            2
-88  88.0    -39          45            2
-89  89.0    -27          45            2
-90  90.0     32          45            2
-
-[91 rows x 4 columns]"
+0    1.0      4          45            2
+1    2.0      9          45            2
+2    3.0     23          45            2
+3    4.0     46          45            2
+4    5.0     34          45            2
+5    6.0     55          45            2
+6    7.0     44          45            2
+7    8.0     54          45            2
+8    9.0     35          45            2
+9   10.0     66          45            2
+10  11.0     37          45            2
+11  12.0     41          45            2
+12  13.0     39          45            2
+13  14.0     37          45            2
+14  15.0     27          45            2
+15  16.0     73          45            2
+16  17.0     30          45            2
+17  18.0     19          45            2
+18  19.0     44          45            2
+19  20.0     33          45            2
+20  21.0     53          45            2
+21  22.0     57          45            2
+22  23.0     40          45            2
+23  24.0     33          45            2
+24  25.0     39          45            2
+25  26.0     25          45            2
+26  27.0     17          45            2
+27  28.0    100          45            2
+28  29.0     68          45            2
+29  30.0    100          45            2
+30  31.0     92          45            2
+31  32.0     79          45            2
+32  33.0     47          45            2
+33  34.0     60          45            2
+34  35.0     35          45            2
+35  36.0     39          45            2
+36  37.0     65          45            2
+37  38.0     46          45            2
+38  39.0     95          45            2
+39  40.0     71          45            2
+40  41.0     49          45            2
+41  42.0     88          45            2
+42  43.0     52          45            2
+43  44.0     44          45            2
+44  45.0     55          45            2
+45  45.5    -26          45            2"
+"['../logos/manchester-city.png', '../logos/fk-crvena-zvezda.png']"
